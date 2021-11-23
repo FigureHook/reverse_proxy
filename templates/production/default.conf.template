@@ -4,7 +4,7 @@ upstream web_app {
 
 server {
     listen 80;
-    server_name ${FLASK_SERVER_NAME} www.${FLASK_SERVER_NAME};
+    server_name ${DOMAIN_NAME} www.${DOMAIN_NAME};
 
     location / {
         return 301 https://$host$request_uri;
