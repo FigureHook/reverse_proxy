@@ -12,10 +12,9 @@ server {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
     server_name ${DOMAIN_NAME} www.${DOMAIN_NAME};
-
-    root   /usr/share/nginx/html;
 
     gzip on;
     gzip_disable "msie6";
@@ -32,10 +31,6 @@ server {
     ssl_certificate         /run/secrets/site_cert;
     ssl_certificate_key     /run/secrets/site_key;
     ssl_dhparam             /run/secrets/dhparam;
-
-    location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
-    }
     ######################
 
     error_page 503 @service_down_page;
